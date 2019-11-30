@@ -1,0 +1,20 @@
+.filter{
+    background: #0d1a24c4;
+    padding: .75rem 1.25rem;
+    margin-bottom: 20px;
+    border: 1px solid rgb(77, 75, 75);
+    border-radius: 3px;
+  }
+  
+  .Assign{
+    padding: 10px;
+  }
+  
+  .table{
+      border: 2px solid rgb(77, 75, 75);
+      border-radius: 3px;
+  }
+  
+  .row.pagination-controls{
+    background-color:  rgb(77, 75, 75) !important;
+  }

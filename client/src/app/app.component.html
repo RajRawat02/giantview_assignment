@@ -1,0 +1,26 @@
+<!-- nav -->
+<!-- <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
+    <div class="nav navbar-nav navbar-right">
+        <a class="nav-item nav-link" routerLink="/">Home</a>
+        <a class="nav-item nav-link " (click)="logout()">Logout</a>
+    </div>
+</nav> -->
+
+<nav class="navbar navbar-inverse navbar-dark bg-dark" *ngIf="currentUser">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Assignment</a>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a style="color:#007bff;cursor: pointer;" (click)="logout()">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+
+<!-- main app container -->
+
+    <div style="overflow-x:hidden">    
+                <alert></alert>
+                <router-outlet></router-outlet>
+    </div>  
+    
