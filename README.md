@@ -14,6 +14,7 @@ how to run client code:-
 how to use website:-
 
 1.First of all register the user.
+
 2.Login with same credentials as register.
 
 3.then,home page is having add button we need to add student by entering all details.
