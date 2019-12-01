@@ -7,7 +7,6 @@ const Student=  mongoose.model('Student');
 //POST new user route (optional, everyone has access)
 router.post('/register', auth.optional, async(req, res, next) => {
 
-  console.log("#################",req);
   const { body: { user } } = req;
 
   if(!user.email) {
@@ -27,10 +26,9 @@ router.post('/register', auth.optional, async(req, res, next) => {
   }
   let isUser = await Users.findOne({email:user.email});
   if(isUser){
-    return res.status(400).send('That user already exists!');
+    return res.send(409,{ success : false, message : 'That user already exists!' });
   }
-  else{
-    console.log("user&&&&&&&&&&",user);
+  else{ 
     const finalUser = new Users(user);
   
     finalUser.setPassword(user.password);
@@ -42,7 +40,6 @@ router.post('/register', auth.optional, async(req, res, next) => {
 
 //POST login route (optional, everyone has access)
 router.post('/login', auth.optional, (req, res, next) => {
-  console.log("%%%%%%%%%%%%%%%%%");
   const { body: { user } } = req;
 
   if(!user.email) {
@@ -72,8 +69,11 @@ router.post('/login', auth.optional, (req, res, next) => {
 
       return res.json({ user: user.toAuthJSON() });
     }
+    else {
+      return res.send(401,{ success : false, message : 'Email or Password is Incorrect' });
+    }
 
-    return status(400).info;
+    return status(500).info;
   })(req, res, next);
 });
 

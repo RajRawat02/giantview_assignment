@@ -9,9 +9,10 @@ import { HomeComponent } from './home/home.component';
 import { AlertComponent } from './alert/alert.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {FormsModule} from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule  } from '@angular/forms'
 import { FilterPipeModule } from 'ngx-filter-pipe';
+import { JwtInterceptor } from './jwt.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,7 @@ import { FilterPipeModule } from 'ngx-filter-pipe';
     HttpClientModule,
     FilterPipeModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
