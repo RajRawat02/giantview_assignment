@@ -2,17 +2,17 @@
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
         <label for="email">Email</label>
-        <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-        <div *ngIf="submitted && registerForm.get('email').valid" class="invalid-feedback">
-            <div *ngIf="registerForm.get('email').valid && registerForm.get('email').touched">email is required</div>
+        <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.controls.email.errors }" />
+        <div *ngIf="submitted && registerForm.controls['email'].errors" class="invalid-feedback">
+            <div *ngIf="registerForm.controls['email'].errors.required">Email is required</div>
         </div>
     </div>
     <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-        <div *ngIf="submitted && registerForm.get('password').valid" class="invalid-feedback">
-            <div *ngIf="!registerForm.get('password').valid && registerForm.get('password').touched">Password is required</div>
-            <!-- <div *ngIf="registerForm.get('password).errors.minlength">Password must be at least 6 characters</div> -->
+        <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.controls.password.errors }" />
+        <div *ngIf="submitted && registerForm.controls['password'].errors" class="invalid-feedback">
+            <div *ngIf="registerForm.controls['password'].errors.required">Password is required</div>
+            <div *ngIf="registerForm.controls['password'].errors.minlength">Password must be at least 6 characters</div>
         </div>
     </div>
     <div class="form-group">

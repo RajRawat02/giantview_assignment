@@ -5,6 +5,21 @@ const auth = require('../auth');
 const Users = mongoose.model('Users');
 const Student=  mongoose.model('Student');
 //POST new user route (optional, everyone has access)
+
+//Dummy data
+var docs=[{"name":"rohit","rollno":1,"degree":"b.e","city":"bhopal"},
+{"name":"sumit","rollno":2,"degree":"b.tech","city":"indore"},
+{"name":"abhi","rollno":3,"degree":"b.e","city":"bhopal"},
+{"name":"bishop","rollno":4,"degree":"b.tech","city":"indore"},
+{"name":"Cim","rollno":5,"degree":"b.e","city":"bhopal"},
+{"name":"Daryl","rollno":6,"degree":"b.tech","city":"indore"},
+{"name":"Emy","rollno":7,"degree":"b.e","city":"bhopal"},
+{"name":"Fin","rollno":8,"degree":"b.tech","city":"indore"},
+{"name":"Gough","rollno":9,"degree":"b.e","city":"bhopal"},
+{"name":"Hog","rollno":10,"degree":"b.tech","city":"indore"},
+{"name":"Ily","rollno":11,"degree":"b.e","city":"bhopal"},
+{"name":"Jim","rollno":12,"degree":"b.tech","city":"indore"}]
+
 router.post('/register', auth.optional, async(req, res, next) => {
 
   const { body: { user } } = req;
@@ -32,9 +47,17 @@ router.post('/register', auth.optional, async(req, res, next) => {
     const finalUser = new Users(user);
   
     finalUser.setPassword(user.password);
-  
-    return finalUser.save()
+    Student.collection.insertMany(docs,onInsert);
+    function onInsert(err, docs) {
+      if (err) {
+          // TODO: handle error
+      } else {
+          console.info('%d docs were successfully stored.', docs.length);
+          return finalUser.save()
       .then(() => res.json({ user: finalUser.toAuthJSON() }));
+      }
+  }
+    
   }
 });
 
@@ -73,7 +96,7 @@ router.post('/login', auth.optional, (req, res, next) => {
       return res.send(401,{ success : false, message : 'Email or Password is Incorrect' });
     }
 
-    return status(500).info;
+    //return status(500).info;
   })(req, res, next);
 });
 

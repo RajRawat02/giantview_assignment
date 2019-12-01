@@ -28,7 +28,7 @@ if(!isProduction) {
 }
 
 //Configure Mongoose
-mongoose.connect('mongodb://localhost/Assignment');
+mongoose.connect('mongodb://localhost/Assignments');
 mongoose.set('debug', true);
 
 //Models & routes
