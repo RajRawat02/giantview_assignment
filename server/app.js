@@ -28,7 +28,7 @@ if(!isProduction) {
 }
 
 //Configure Mongoose
-mongoose.connect('mongodb://localhost/passport-tutorial');
+mongoose.connect('mongodb://localhost/Assignment');
 mongoose.set('debug', true);
 
 //Models & routes
